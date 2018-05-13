@@ -61,8 +61,6 @@ public class PostFormBuilder extends OkHttpRequestBuilder<PostFormBuilder> imple
         }
     }
 
-
-
     @Override
     public PostFormBuilder params(Map<String, String> params)
     {
@@ -80,8 +78,4 @@ public class PostFormBuilder extends OkHttpRequestBuilder<PostFormBuilder> imple
         params.put(key, val);
         return this;
     }
-
-
-
-
 }

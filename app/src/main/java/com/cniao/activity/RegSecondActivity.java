@@ -31,13 +31,15 @@ import dmax.dialog.SpotsDialog;
 import okhttp3.Call;
 
 /**
- * Created by 高磊华
- * Time  2017/8/12
- * Describe: 接收验证码的注册界面,即注册界面二
+ * Description 接收验证码的注册界面,即注册界面二
+ *
+ * Author 何明胜
+ *
+ * Created at 2018/05/13 21:05
+ *
+ * Version 1.0.0
  */
-
 public class RegSecondActivity extends BaseActivity {
-
     @BindView(R.id.toolbar)
     CNiaoToolBar mToolBar;
 
@@ -127,8 +129,8 @@ public class RegSecondActivity extends BaseActivity {
      * 提交验证码
      */
     private void submitCode() {
-
-        String vCode = mEtCode.getText().toString().trim();    //验证码
+        //验证码
+        String vCode = mEtCode.getText().toString().trim();
 
         if (TextUtils.isEmpty(vCode)) {
             ToastUtils.showSafeToast(RegSecondActivity.this, "请填写验证码");

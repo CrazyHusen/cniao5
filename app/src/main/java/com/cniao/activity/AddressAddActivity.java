@@ -42,7 +42,6 @@ public class AddressAddActivity extends BaseActivity {
 
 
     //三级联动 github地址   //https://github.com/saiwu-bigkoo/Android-PickerView    start:4953
-
     private ArrayList<PickerCityAddressBean>        options1Items = new ArrayList<>();
     private ArrayList<ArrayList<String>>            options2Items = new ArrayList<>();
     private ArrayList<ArrayList<ArrayList<String>>> options3Items = new ArrayList<>();

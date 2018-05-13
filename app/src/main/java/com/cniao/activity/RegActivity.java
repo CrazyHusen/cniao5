@@ -19,11 +19,14 @@ import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
 /**
- * Created by 高磊华
- * Time  2017/8/12
- * Describe: 注册activity
+ * Description 注册activity
+ *
+ * Author 何明胜
+ *
+ * Created at 2018/05/13 20:13
+ *
+ * Version 1.0.0
  */
-
 public class RegActivity extends BaseActivity {
 
     private EventHandler eventHandler;
@@ -43,20 +46,16 @@ public class RegActivity extends BaseActivity {
         return R.layout.activity_reg;
     }
 
-
     @Override
     protected void init() {
         initToolBar();
         initSms();
     }
 
-
     private void initSms() {
-
         // 创建EventHandler对象
         eventHandler = new EventHandler() {
             public void afterEvent(int event, int result, Object data) {
-
                 if (result == SMSSDK.RESULT_COMPLETE) {
                     //回调完成
                     if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
@@ -87,9 +86,7 @@ public class RegActivity extends BaseActivity {
      *
      * @param data
      */
-
     private void afterVerificationCodeRequested(Boolean data) {
-
         LogUtil.e("注册界面", "代码是否执行", true);
 
         String phone = mEtxtPhone.getText().toString().trim().replaceAll("\\s*", "");
@@ -108,9 +105,7 @@ public class RegActivity extends BaseActivity {
         startActivity(intent);
     }
 
-
     private void initToolBar() {
-
         mToolBar.setRightButtonOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,10 +115,9 @@ public class RegActivity extends BaseActivity {
     }
 
     /**
-     * 获取手机号 密码等信息
+     * 获取手机号 密码等信息 发送验证码
      */
     private void getCode() {
-
         String phone = mEtxtPhone.getText().toString().trim().replaceAll("\\s*", "");
         String code = mTxtCountryCode.getText().toString().trim();
         String pwd = mEtxtPwd.getText().toString().trim();
@@ -131,7 +125,6 @@ public class RegActivity extends BaseActivity {
         checkPhoneNum(phone, code);
 
         SMSSDK.getVerificationCode(code, phone);
-
     }
 
     /**
@@ -164,11 +157,9 @@ public class RegActivity extends BaseActivity {
         }
     }
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         SMSSDK.unregisterEventHandler(eventHandler);
     }
 }
-

@@ -105,4 +105,8 @@ dependencies {
     compile project(':baseadapter-recyclerview')
     compile files('libs/BaiduLBS_Android.jar')
     compile files('libs/tbs_sdk_thirdapp_v3.2.0.1104_43200_sharewithdownload_withfilereader_withoutGame_obfs_20170609_115346.jar')
+
+    //添加的
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.4'
 }

@@ -18,6 +18,11 @@ public class User implements Serializable {
     private String username;
     private String mobi;
 
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", email=" + email + ", logo_url=" + logo_url + ", username=" + username + ", mobi=" + mobi + "]";
+    }
+
     public Long getId() {
         return id;
     }

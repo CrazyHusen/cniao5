@@ -2,14 +2,17 @@
 
 buildscript {
     repositories {
-        google()
-        jcenter()
-        mavenCentral()
+         maven{ 
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+         }
+         google()
+         jcenter()
+         mavenCentral()
     }
 
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.0.0'
         classpath 'com.novoda:bintray-release:0.5.0'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
 
@@ -20,6 +23,9 @@ buildscript {
 
 allprojects {
     repositories {
+         maven{
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        }
         google()
         jcenter()
     }
