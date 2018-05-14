@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.cniao"
+          package="pers.husen.highdsa"
     >
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -23,9 +23,8 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
 
-
     <application
-        android:name=".CNiaoApplication"
+        android:name="pers.husen.highdsa.CNiaoApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -34,18 +33,18 @@
         android:theme="@style/AppTheme"
         >
 
-        <activity android:name=".activity.SplashActivity">
+        <activity android:name="pers.husen.highdsa.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.MainActivity"/>
-        <activity android:name=".activity.GoodsDetailsActivity"/>
-        <activity android:name=".activity.LoginActivity"/>
-        <activity android:name=".activity.AddressListActivity"/>
-        <activity android:name=".activity.AddressAddActivity"/>
+        <activity android:name="pers.husen.highdsa.activity.MainActivity"/>
+        <activity android:name="pers.husen.highdsa.activity.GoodsDetailsActivity"/>
+        <activity android:name="pers.husen.highdsa.activity.LoginActivity"/>
+        <activity android:name="pers.husen.highdsa.activity.AddressListActivity"/>
+        <activity android:name="pers.husen.highdsa.activity.AddressAddActivity"/>
 
         <!--短信验证-->
         <activity
@@ -79,9 +78,8 @@
             </intent-filter>
         </activity>
 
-
         <activity
-            android:name=".wxapi.WXEntryActivity"
+            android:name="pers.husen.highdsa.wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -116,9 +114,8 @@
         </service>
 
 
-        <activity android:name=".activity.RegActivity"/>
-        <activity android:name=".activity.RegSecondActivity"/>
-
+        <activity android:name="pers.husen.highdsa.activity.RegActivity"/>
+        <activity android:name="pers.husen.highdsa.activity.RegSecondActivity"/>
 
         <!-- Ping++ SDK -->
         <activity
@@ -133,7 +130,7 @@
         <!-- 1.需要将以下"替换成自己 APK 的包名"换成在微信平台上注册填写的包名 -->
         <!-- 2.WxPayEntryActivity 这个类在 SDK 内部实现，开发者不需要额外实现该类 -->
         <activity-alias
-            android:name="com.cniao.wxapi.WXPayEntryActivity"
+            android:name="pers.husen.highdsa.wxapi.WXPayEntryActivity"
             android:exported="true"
             android:targetActivity="com.pingplusplus.android.PaymentActivity"
             />
@@ -154,16 +151,15 @@
             >
         </activity>
 
-        <activity android:name=".activity.CreateOrderActivity"/>
-        <activity android:name=".activity.GoodsListActivity"/>
-        <activity android:name=".activity.MyFavoriteActivity"/>
-        <activity android:name=".activity.MyOrdersActivity"/>
-        <activity android:name=".activity.SearchActivity"/>
-        <activity android:name=".activity.GuideActivity"/>
+        <activity android:name="pers.husen.highdsa.activity.CreateOrderActivity"/>
+        <activity android:name="pers.husen.highdsa.activity.GoodsListActivity"/>
+        <activity android:name="pers.husen.highdsa.activity.MyFavoriteActivity"/>
+        <activity android:name="pers.husen.highdsa.activity.MyOrdersActivity"/>
+        <activity android:name="pers.husen.highdsa.activity.SearchActivity"/>
+        <activity android:name="pers.husen.highdsa.activity.GuideActivity"/>
         <activity
-            android:name=".activity.SearchResultActivity"
+            android:name="pers.husen.highdsa.activity.SearchResultActivity"
             android:launchMode="singleTask"
             />
     </application>
-
 </manifest>

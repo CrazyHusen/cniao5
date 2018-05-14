@@ -22,7 +22,9 @@ public class HttpConstants {
 
     /** 发送验证码 */
     public static final String URL_SEND_CODE = BASE_URL_LOGIN + "sms/v1/captcha";
-
     /** 校验验证码 */
     public static final String URL_VALIDATE_CODE = BASE_URL_LOGIN + "app/v1/validate";
+
+    /** 校验验证码 */
+    public static final String URL_REGISTER_USER = BASE_URL_LOGIN + "/register/v1/user";
 }
