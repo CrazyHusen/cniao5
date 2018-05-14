@@ -13,14 +13,16 @@ public class HttpConstants {
     /**
      * 登录基础url
      */
-    public static final String BASE_URL_LOGIN = "http://223.3.89.104:8080/highdsa-web-app/app/v1/";
+    public static final String BASE_URL_LOGIN = "http://223.3.89.104:8080/highdsa-web-app/";
 
-    /**
-     * 登录
-     */
-    public static final String URL_LOGIN = BASE_URL_LOGIN + "login/phone";
-    /**
-     * 退出登录
-     */
-    public static final String URL_LOGOUT = BASE_URL_LOGIN + "logout";
+    /** 登录 */
+    public static final String URL_LOGIN = BASE_URL_LOGIN + "app/v1/login/phone";
+    /** 退出登录 */
+    public static final String URL_LOGOUT = BASE_URL_LOGIN + "app/v1/logout";
+
+    /** 发送验证码 */
+    public static final String URL_SEND_CODE = BASE_URL_LOGIN + "sms/v1/captcha";
+
+    /** 校验验证码 */
+    public static final String URL_VALIDATE_CODE = BASE_URL_LOGIN + "app/v1/validate";
 }

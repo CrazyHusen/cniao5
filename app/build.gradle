@@ -4,6 +4,12 @@ apply plugin: 'org.greenrobot.greendao'
 android {
 
     signingConfigs {
+        config {
+            keyAlias 'highdsa'
+            keyPassword '123456'
+            storeFile file('F:/AndroidProjects/husen.jks')
+            storePassword '123456'
+        }
     }
 
     compileSdkVersion 27
@@ -24,7 +30,6 @@ android {
         targetGenDir 'src/main/java'
     }
 
-
     buildTypes {
         debug {
             debuggable true
@@ -38,12 +43,10 @@ android {
         }
     }
 
-
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
     }
-
 
     buildTypes {
         release {
@@ -105,8 +108,8 @@ dependencies {
     compile project(':baseadapter-recyclerview')
     compile files('libs/BaiduLBS_Android.jar')
     compile files('libs/tbs_sdk_thirdapp_v3.2.0.1104_43200_sharewithdownload_withfilereader_withoutGame_obfs_20170609_115346.jar')
-
     //添加的
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.4'
+    compile 'com.squareup.okhttp3:okhttp:3.9.0'
+    compile 'com.squareup.okio:okio:1.13.0'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.4'
 }

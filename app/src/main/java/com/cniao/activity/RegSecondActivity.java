@@ -15,14 +15,22 @@ import com.cniao.contants.HttpContants;
 import com.cniao.msg.LoginRespMsg;
 import com.cniao.utils.CountTimerView;
 import com.cniao.utils.DESUtil;
-import com.cniao.utils.LogUtil;
+
+import okhttp3.Response;
+import pers.husen.highdsa.constants.HttpConstants;
+import pers.husen.highdsa.utils.LogUtil;
 import com.cniao.utils.ToastUtils;
 import com.cniao.widget.CNiaoToolBar;
 import com.cniao.widget.ClearEditText;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.Callback;
 import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import cn.smssdk.EventHandler;
@@ -86,7 +94,6 @@ public class RegSecondActivity extends BaseActivity {
     }
 
     private void initSms() {
-
         // 创建EventHandler对象
         eventHandler = new EventHandler() {
             public void afterEvent(int event, int result, Object data) {
@@ -134,10 +141,13 @@ public class RegSecondActivity extends BaseActivity {
 
         if (TextUtils.isEmpty(vCode)) {
             ToastUtils.showSafeToast(RegSecondActivity.this, "请填写验证码");
+
             return;
         }
 
-        SMSSDK.submitVerificationCode(countryCode, phone, vCode);
+        //校验验证码
+        validateCode(phone, vCode);
+        //SMSSDK.submitVerificationCode(countryCode, phone, vCode);
     }
 
 
@@ -145,7 +155,6 @@ public class RegSecondActivity extends BaseActivity {
      * 注册.与后台交互
      */
     private void doReg() {
-
         String pwdEncode = DESUtil.encode(Contants.DES_KEY, pwd);
         String url = HttpContants.REG + "?phone=" + phone + "&password=" + pwdEncode;
         OkHttpUtils.post().url(url).build().execute(new StringCallback() {
@@ -173,8 +182,6 @@ public class RegSecondActivity extends BaseActivity {
 
             }
         });
-
-
     }
 
     /**
@@ -188,6 +195,40 @@ public class RegSecondActivity extends BaseActivity {
         }
         builder.reverse();
         return builder.toString();
+    }
+
+    /**
+     * 发送验证码
+     */
+    private void validateCode(String phone, String code) {
+        Map<String, String> params = new HashMap<>();
+        params.put("phone", phone);
+        params.put("code", code);
+
+        // 修改登录的请求地址
+        OkHttpUtils.post().url(HttpConstants.URL_VALIDATE_CODE).params(params).build().execute(new Callback<String>() {
+            @Override
+            public String parseNetworkResponse(Response response, int id) throws Exception {
+                String string = response.body().string();
+
+                //使用jackson
+                ObjectMapper objectMapper = new ObjectMapper();
+                Map<String, String> map = objectMapper.readValue(string, Map.class);
+
+                LogUtil.d("测试结果", map.toString());
+
+                return "";
+            }
+
+            @Override
+            public void onError(Call call, Exception e, int id) {
+            }
+
+            @Override
+            public void onResponse(String response, int id) {
+
+            }
+        });
     }
 
     @Override

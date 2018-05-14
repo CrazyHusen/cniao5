@@ -14,7 +14,7 @@ import com.cniao.R;
 import com.cniao.bean.ShoppingCart;
 import com.cniao.utils.CartShopProvider;
 import com.cniao.utils.GlideUtils;
-import com.cniao.utils.LogUtil;
+import pers.husen.highdsa.utils.LogUtil;
 import com.cniao.widget.NumberAddSubView;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;

@@ -18,7 +18,7 @@ import com.cniao.contants.HttpContants;
 import com.cniao.msg.CreateOrderRespMsg;
 import com.cniao.msg.LoginRespMsg;
 import com.cniao.utils.CartShopProvider;
-import com.cniao.utils.LogUtil;
+import pers.husen.highdsa.utils.LogUtil;
 import com.cniao.widget.FullyLinearLayoutManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

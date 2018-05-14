@@ -41,7 +41,6 @@ public class UserLocalData {
         return PreferencesUtils.getString(context, Contants.TOKEN);
     }
 
-
     public static void clearUser(Context context) {
         PreferencesUtils.putString(context, Contants.USER_JSON, "");
     }
@@ -49,5 +48,4 @@ public class UserLocalData {
     public static void clearToken(Context context) {
         PreferencesUtils.putString(context, Contants.TOKEN, "");
     }
-
 }

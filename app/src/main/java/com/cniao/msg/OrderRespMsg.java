@@ -9,7 +9,6 @@ public class OrderRespMsg{
 
     private Charge charge;
 
-
     public String getOrderNum() {
         return orderNum;
     }

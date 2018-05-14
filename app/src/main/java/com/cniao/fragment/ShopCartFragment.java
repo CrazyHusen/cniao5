@@ -18,7 +18,7 @@ import com.cniao.adapter.ShopCartAdapter;
 import com.cniao.bean.MessageEvent;
 import com.cniao.bean.ShoppingCart;
 import com.cniao.utils.CartShopProvider;
-import com.cniao.utils.LogUtil;
+import pers.husen.highdsa.utils.LogUtil;
 import com.cniao.widget.CNiaoToolBar;
 import com.cniao.widget.WrapContentLinearLayoutManager;
 

@@ -17,11 +17,14 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 import butterknife.ButterKnife;
 
 /**
- * Created by 高磊华
- * Time  2017/8/9
- * Describe:activity的基类
+ * Description activity的基类
+ *
+ * Author 何明胜
+ *
+ * Created at 2018/05/14 22:51
+ *
+ * Version 1.0.0
  */
-
 public abstract class BaseActivity extends AppCompatActivity {
 
     protected static final String TAG = BaseActivity.class.getSimpleName();
@@ -35,26 +38,21 @@ public abstract class BaseActivity extends AppCompatActivity {
         init();
     }
 
-
     /**
      * android 5.0 及以下沉浸式状态栏
      */
     protected void setStatusBar() {
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);//设置透明状态栏
         }
 
         initSystemBar(this);
-
     }
-
 
     /**
      * 沉浸式状态栏.
      */
     public void initSystemBar(Activity activity) {
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setTranslucentStatus(activity, true);
         }
@@ -63,11 +61,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         tintManager.setStatusBarTintEnabled(true);
         // 使用颜色资源
         tintManager.setStatusBarTintResource(R.color.colorPrimary);
-
     }
 
     private void setTranslucentStatus(Activity activity, boolean on) {
-
         Window win = activity.getWindow();
         WindowManager.LayoutParams winParams = win.getAttributes();
         final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
@@ -78,16 +74,13 @@ public abstract class BaseActivity extends AppCompatActivity {
             winParams.flags &= ~bits;
         }
         win.setAttributes(winParams);
-
     }
-
 
     protected abstract void init();
 
     protected abstract int getContentResourseId();
 
     public void startActivity(Intent intent, boolean isNeedLogin) {
-
         if (isNeedLogin) {
             User user = CNiaoApplication.getInstance().getUser();
             if (user != null) {
@@ -102,5 +95,4 @@ public abstract class BaseActivity extends AppCompatActivity {
             super.startActivity(intent);
         }
     }
-
 }

@@ -16,7 +16,6 @@ import com.cniao.CNiaoApplication;
  * Time  2018/2/10
  * Describe: Toast的工具类
  */
-
 public class ToastUtils {
 
     private static Toast mToast;
@@ -25,8 +24,8 @@ public class ToastUtils {
      * 安全弹出Toast。处理线程的问题。
      */
     public static void showSafeToast(final Context context, final String text) {
-
-        if (Looper.myLooper() != Looper.getMainLooper()) {//如果不是在主线程弹出吐司，那么抛到主线程弹
+        //如果不是在主线程弹出吐司，那么抛到主线程弹
+        if (Looper.myLooper() != Looper.getMainLooper()) {
             new Handler(Looper.getMainLooper()).post(
                     new Runnable() {
                         @Override
@@ -60,7 +59,6 @@ public class ToastUtils {
             mToast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
         }
 
-
         if (text.length() < 10) {
             mToast.setDuration(Toast.LENGTH_SHORT);
         } else {
@@ -77,5 +75,4 @@ public class ToastUtils {
         mToast.setView(view);
         mToast.show();
     }
-
 }

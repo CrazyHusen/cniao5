@@ -16,7 +16,7 @@ import com.cniao.adapter.HotGoodsAdapter;
 import com.cniao.bean.HotGoods;
 import com.cniao.contants.Contants;
 import com.cniao.contants.HttpContants;
-import com.cniao.utils.LogUtil;
+import pers.husen.highdsa.utils.LogUtil;
 import com.cniao.utils.ToastUtils;
 import com.cniao.widget.CNiaoToolBar;
 import com.google.gson.Gson;

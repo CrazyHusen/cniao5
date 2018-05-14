@@ -10,7 +10,7 @@ import com.cniao.R;
 import com.cniao.bean.Campaign;
 import com.cniao.bean.HomeCampaignBean;
 import com.cniao.utils.GlideUtils;
-import com.cniao.utils.LogUtil;
+import pers.husen.highdsa.utils.LogUtil;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ItemViewDelegate;
 import com.zhy.adapter.recyclerview.base.ViewHolder;

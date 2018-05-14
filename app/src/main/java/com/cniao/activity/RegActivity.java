@@ -6,36 +6,50 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.cniao.R;
-import com.cniao.utils.LogUtil;
 import com.cniao.utils.ToastUtils;
 import com.cniao.widget.CNiaoToolBar;
 import com.cniao.widget.ClearEditText;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.Callback;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
+import okhttp3.Call;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import pers.husen.highdsa.constants.HttpConstants;
+import pers.husen.highdsa.utils.LogUtil;
 
 /**
  * Description 注册activity
- *
+ * <p>
  * Author 何明胜
- *
+ * <p>
  * Created at 2018/05/13 20:13
- *
+ * <p>
  * Version 1.0.0
  */
 public class RegActivity extends BaseActivity {
-
     private EventHandler eventHandler;
+    //右上角继续按钮
     @BindView(R.id.toolbar)
-    CNiaoToolBar  mToolBar;
+    CNiaoToolBar mToolBar;
     @BindView(R.id.txtCountry)
-    TextView      mTxtCountry;
+    TextView mTxtCountry;
+    //国家编码,如+86
     @BindView(R.id.txtCountryCode)
-    TextView      mTxtCountryCode;
+    TextView mTxtCountryCode;
     @BindView(R.id.edittxt_phone)
     ClearEditText mEtxtPhone;
     @BindView(R.id.edittxt_pwd)
@@ -69,7 +83,10 @@ public class RegActivity extends BaseActivity {
                 } else if (data instanceof Throwable) {
                     Throwable throwable = (Throwable) data;
                     String msg = throwable.getMessage();
-                    ToastUtils.showSafeToast(RegActivity.this,msg);
+
+                    LogUtil.e("SMSDK执行", msg);
+
+                    ToastUtils.showSafeToast(RegActivity.this, msg);
                 } else {
                     ((Throwable) data).printStackTrace();
                 }
@@ -79,7 +96,6 @@ public class RegActivity extends BaseActivity {
         // 注册监听器
         SMSSDK.registerEventHandler(eventHandler);
     }
-
 
     /**
      * 跳转到注册界面二
@@ -122,28 +138,38 @@ public class RegActivity extends BaseActivity {
         String code = mTxtCountryCode.getText().toString().trim();
         String pwd = mEtxtPwd.getText().toString().trim();
 
-        checkPhoneNum(phone, code);
+        //如果手机号无效,直接返回
+        if (!checkPhoneNumValidate(phone, code)) {
+            return;
+        }
 
-        SMSSDK.getVerificationCode(code, phone);
+        LogUtil.e("手机号验证完毕", "123");
+        //发送验证码
+        sendValidateCode(phone);
+        //SMSSDK.getVerificationCode(code, phone);
     }
 
     /**
-     * 对手机号进行验证
+     * 对手机号有效性进行验证
      */
-    private void checkPhoneNum(String phone, String code) {
+    private boolean checkPhoneNumValidate(String phone, String code) {
         if (code.startsWith("+")) {
             code = code.substring(1);
         }
 
         if (TextUtils.isEmpty(phone)) {
-            ToastUtils.showSafeToast(RegActivity.this,"请输入手机号码");
-            return;
+            LogUtil.e("手机号为空", "123");
+            ToastUtils.showSafeToast(RegActivity.this, "请输入手机号码");
+
+            return false;
         }
 
-        if (code == "86") {
+        if ("86".equals(code)) {
             if (phone.length() != 11) {
-                ToastUtils.showSafeToast(RegActivity.this,"手机号码长度不对");
-                return;
+                LogUtil.e("手机号长度不为11", phone);
+                ToastUtils.showSafeToast(RegActivity.this, "手机号码长度不对");
+
+                return false;
             }
         }
 
@@ -152,9 +178,46 @@ public class RegActivity extends BaseActivity {
         Matcher m = p.matcher(phone);
 
         if (!m.matches()) {
-            ToastUtils.showSafeToast(RegActivity.this,"您输入的手机号码格式不正确");
-            return;
+            LogUtil.e("手机号格式不正确", phone);
+            ToastUtils.showSafeToast(RegActivity.this, "您输入的手机号码格式不正确");
+
+            return false;
         }
+
+        return true;
+    }
+
+    /**
+     * 发送验证码
+     */
+    private void sendValidateCode(String phone) {
+        Map<String, String> params = new HashMap<>();
+        params.put("phone", phone);
+
+        // 修改登录的请求地址
+        OkHttpUtils.post().url(HttpConstants.URL_SEND_CODE).params(params).build().execute(new Callback<String>() {
+            @Override
+            public String parseNetworkResponse(Response response, int id) throws Exception {
+                String string = response.body().string();
+
+                //使用jackson
+                ObjectMapper objectMapper = new ObjectMapper();
+                Map<String, String> map = objectMapper.readValue(string, Map.class);
+
+                LogUtil.d("测试结果", map.toString());
+
+                return "";
+            }
+
+            @Override
+            public void onError(Call call, Exception e, int id) {
+            }
+
+            @Override
+            public void onResponse(String response, int id) {
+
+            }
+        });
     }
 
     @Override

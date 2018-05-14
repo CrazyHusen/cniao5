@@ -29,7 +29,7 @@ import com.cniao.bean.VFMessage;
 import com.cniao.bean.Weather;
 import com.cniao.contants.HttpContants;
 import com.cniao.service.LocationService;
-import com.cniao.utils.LogUtil;
+import pers.husen.highdsa.utils.LogUtil;
 import com.cniao.utils.ScreenUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

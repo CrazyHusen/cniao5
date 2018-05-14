@@ -17,7 +17,7 @@ import com.cniao.fragment.HomeFragment;
 import com.cniao.fragment.HotFragment;
 import com.cniao.fragment.MineFragment;
 import com.cniao.fragment.ShopCartFragment;
-import com.cniao.utils.LogUtil;
+import pers.husen.highdsa.utils.LogUtil;
 import com.cniao.utils.ToastUtils;
 import com.cniao.widget.FragmentTabHost;
 
@@ -35,7 +35,6 @@ import java.util.List;
  */
 
 public class MainActivity extends BaseActivity {
-
     private FragmentTabHost mTabhost;
     private LayoutInflater  mInflater;
     private List<Tab> mTabs = new ArrayList<>();
@@ -58,7 +57,6 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initTab() {
-
         Tab tab_home = new Tab(HomeFragment.class, R.string.home, R.drawable.selector_icon_home);
         Tab tab_hot = new Tab(HotFragment.class, R.string.hot, R.drawable.selector_icon_hot);
         Tab tab_category = new Tab(CategoryFragment.class, R.string.catagory, R.drawable
@@ -83,7 +81,6 @@ public class MainActivity extends BaseActivity {
             mTabhost.addTab(tabSpec, tab.getFragment(), null);
         }
 
-
         /**
          * 因为涉及到fragment的生命周期.所以每次切换到购物车时,需要重新刷新数据
          */
@@ -99,11 +96,9 @@ public class MainActivity extends BaseActivity {
 
         mTabhost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
         mTabhost.setCurrentTab(0);           //默认选中第0个
-
     }
 
     private void refData() {
-
         if (shopCartFragment == null) {
             Fragment fragment = getSupportFragmentManager().findFragmentByTag(getString(R.string
                     .cart));
@@ -115,7 +110,6 @@ public class MainActivity extends BaseActivity {
         } else {
             shopCartFragment.refData();
         }
-
     }
 
     private View buildIndicator(Tab tab) {
@@ -130,14 +124,12 @@ public class MainActivity extends BaseActivity {
         return view;
     }
 
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent event) {
         if (event.getType() == 0) {
             mTabhost.setCurrentTab(1);
         }
     }
-
 
     @Override
     protected void onStop() {

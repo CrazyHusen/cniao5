@@ -14,8 +14,6 @@ import java.util.List;
  *     desc   : 检查第三方软件是否有安装
  * </pre>
  */
-
-
 public class AppExistUtils {
 
     /**
@@ -69,5 +67,4 @@ public class AppExistUtils {
         }
         return false;
     }
-
 }

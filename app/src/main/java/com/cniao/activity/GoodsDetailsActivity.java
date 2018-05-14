@@ -13,7 +13,7 @@ import com.cniao.bean.User;
 import com.cniao.contants.HttpContants;
 import com.cniao.helper.SharePresenter;
 import com.cniao.utils.CartShopProvider;
-import com.cniao.utils.LogUtil;
+import pers.husen.highdsa.utils.LogUtil;
 import com.cniao.utils.ToastUtils;
 import com.cniao.widget.CNiaoToolBar;
 import com.tencent.smtt.sdk.WebSettings;

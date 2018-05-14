@@ -14,5 +14,3 @@ public class CreateOrderRespMsg extends BaseRespMsg {
     }
 
 }
-
-

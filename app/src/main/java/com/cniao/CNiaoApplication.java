@@ -30,9 +30,7 @@ import com.mob.MobSDK;
 public class CNiaoApplication extends MobApplication {
 
     //    mob信息    app key:201f8a7a91c30      App Secret:  c63ec5c1eeac1f873ec78c1365120431
-
     // ping ++    Ping++ 系统中标识你的应用标识     app_mjTmHS94izPOSWLK
-
     //百度地图的 ak   zbqExff1uz8XyUVn5GbyylomCa0rOkmP
 
     private User user;
@@ -67,11 +65,9 @@ public class CNiaoApplication extends MobApplication {
 
         //配置数据库
         setupDatabase();
-
     }
 
     private void setupDatabase() {
-
         //创建数据库
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "search.db", null);
         //获取可写数据库

@@ -38,7 +38,6 @@ import pers.husen.highdsa.constants.HttpConstants;
  * Version 1.0.0
  */
 public class LoginActivity extends BaseActivity {
-
     @BindView(R.id.toolbar)
     CNiaoToolBar mToolBar;
     @BindView(R.id.etxt_phone)
@@ -72,7 +71,8 @@ public class LoginActivity extends BaseActivity {
     public void viewclick(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
-                login();   //登录
+                //登录
+                login();
                 break;
             case R.id.txt_toReg:
                 Intent intent = new Intent(this, RegActivity.class);
@@ -85,7 +85,6 @@ public class LoginActivity extends BaseActivity {
      * 登录
      */
     private void login() {
-
         String phone = mEtxtPhone.getText().toString().trim();
         if (TextUtils.isEmpty(phone)) {
             ToastUtils.showSafeToast(LoginActivity.this, "请输入手机号码");
