@@ -148,12 +148,11 @@ public class SearchActivity extends BaseActivity {
     public void onViewClicked() {
         String content = mEditText.getText().toString().trim();
         if (TextUtils.isEmpty(content)) {
-            ToastUtils.showSafeToast(SearchActivity.this,"还没输入您想搜索的宝贝呢");
+            ToastUtils.showDebugSafeToast(SearchActivity.this,"还没输入您想搜索的宝贝呢");
             return;
         }
         doData(content);
     }
-
 
     /**
      * 历史搜索
@@ -170,7 +169,6 @@ public class SearchActivity extends BaseActivity {
         }
 
     }
-
 
     /**
      * 操作数据库数据
@@ -212,5 +210,3 @@ public class SearchActivity extends BaseActivity {
 
     }
 }
-
-

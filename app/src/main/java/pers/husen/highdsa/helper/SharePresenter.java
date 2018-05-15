@@ -23,15 +23,14 @@ import cn.sharesdk.wechat.moments.WechatMoments;
 
 
 /**
- * <pre>
- *     author : 高磊华
- *     e-mail : 984992087@qq.com
- *     time   : 2018/02/10
- *     desc   : 社会化分享的封装
- * </pre>
+ * Description 社会化分享的封装
+ *
+ * Author 何明胜
+ *
+ * Created at 2018/05/16 01:43
+ *
+ * Version 1.0.0
  */
-
-
 public class SharePresenter implements View.OnClickListener {
 
     private volatile static SharePresenter sGetShareInstance;
@@ -116,7 +115,7 @@ public class SharePresenter implements View.OnClickListener {
                 if (wx) {
                     share(Wechat.NAME);
                 } else {
-                    ToastUtils.showSafeToast(CNiaoApplication.sContext,"未安装微信,无法分享");
+                    ToastUtils.showDebugSafeToast(CNiaoApplication.sContext,"未安装微信,无法分享");
                     dialog.dismiss();
                 }
                 break;
@@ -125,7 +124,7 @@ public class SharePresenter implements View.OnClickListener {
                 if (wx1) {
                     share(WechatMoments.NAME);
                 } else {
-                    ToastUtils.showSafeToast(CNiaoApplication.sContext,"未安装微信,无法分享");
+                    ToastUtils.showDebugSafeToast(CNiaoApplication.sContext,"未安装微信,无法分享");
                     dialog.dismiss();
                 }
 
@@ -135,7 +134,7 @@ public class SharePresenter implements View.OnClickListener {
                 if (wb) {
                     share(SinaWeibo.NAME);
                 } else {
-                    ToastUtils.showSafeToast(CNiaoApplication.sContext,"未安装微博,无法分享");
+                    ToastUtils.showDebugSafeToast(CNiaoApplication.sContext,"未安装微博,无法分享");
                     dialog.dismiss();
                 }
                 break;
@@ -144,7 +143,7 @@ public class SharePresenter implements View.OnClickListener {
                 if (qq) {
                     share(QQ.NAME);
                 } else {
-                    ToastUtils.showSafeToast(CNiaoApplication.sContext,"未安装QQ,无法分享");
+                    ToastUtils.showDebugSafeToast(CNiaoApplication.sContext,"未安装QQ,无法分享");
                     dialog.dismiss();
                 }
                 break;
@@ -153,7 +152,7 @@ public class SharePresenter implements View.OnClickListener {
                 if (qq1) {
                     share(QZone.NAME);
                 } else {
-                    ToastUtils.showSafeToast(CNiaoApplication.sContext,"未安装QQ,无法分享");
+                    ToastUtils.showDebugSafeToast(CNiaoApplication.sContext,"未安装QQ,无法分享");
                     dialog.dismiss();
                 }
                 break;
@@ -184,6 +183,5 @@ public class SharePresenter implements View.OnClickListener {
 
         // 启动分享GUI
         oks.show(mActivity);
-
     }
 }

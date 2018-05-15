@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import pers.husen.highdsa.bean.User;
-import pers.husen.highdsa.contants.Contants;
+import pers.husen.highdsa.constants.Constants;
 import com.google.gson.Gson;
 
 
@@ -20,17 +20,17 @@ public class UserLocalData {
 
     public static void putUser(Context context, User user) {
         String user_json = mGson.toJson(user);
-        PreferencesUtils.putString(context, Contants.USER_JSON, user_json);
+        PreferencesUtils.putString(context, Constants.USER_JSON, user_json);
     }
 
     public static void putToken(Context context, String token) {
-        PreferencesUtils.putString(context, Contants.TOKEN, token);
+        PreferencesUtils.putString(context, Constants.TOKEN, token);
     }
 
 
     public static User getUser(Context context) {
 
-        String user_json = PreferencesUtils.getString(context, Contants.USER_JSON);
+        String user_json = PreferencesUtils.getString(context, Constants.USER_JSON);
         if (!TextUtils.isEmpty(user_json)) {
             return mGson.fromJson(user_json, User.class);
         }
@@ -38,14 +38,14 @@ public class UserLocalData {
     }
 
     public static String getToken(Context context) {
-        return PreferencesUtils.getString(context, Contants.TOKEN);
+        return PreferencesUtils.getString(context, Constants.TOKEN);
     }
 
     public static void clearUser(Context context) {
-        PreferencesUtils.putString(context, Contants.USER_JSON, "");
+        PreferencesUtils.putString(context, Constants.USER_JSON, "");
     }
 
     public static void clearToken(Context context) {
-        PreferencesUtils.putString(context, Contants.TOKEN, "");
+        PreferencesUtils.putString(context, Constants.TOKEN, "");
     }
 }

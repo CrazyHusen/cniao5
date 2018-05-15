@@ -13,8 +13,8 @@ import pers.husen.highdsa.R;
 import pers.husen.highdsa.adapter.GoodsOrderAdapter;
 import pers.husen.highdsa.bean.Charge;
 import pers.husen.highdsa.bean.ShoppingCart;
-import pers.husen.highdsa.contants.Contants;
-import pers.husen.highdsa.contants.HttpContants;
+import pers.husen.highdsa.constants.Constants;
+import pers.husen.highdsa.constants.HttpContants;
 import pers.husen.highdsa.msg.CreateOrderRespMsg;
 import pers.husen.highdsa.msg.LoginRespMsg;
 import pers.husen.highdsa.utils.CartShopProvider;
@@ -132,7 +132,7 @@ public class CreateOrderActivity extends BaseActivity implements View.OnClickLis
     @OnClick(R.id.rl_addr)
     public void chooseAddress(View view) {
         Intent intent = new Intent(CreateOrderActivity.this, AddressListActivity.class);
-        startActivityForResult(intent, Contants.REQUEST_CHOOSE_ADDRESS);
+        startActivityForResult(intent, Constants.REQUEST_CHOOSE_ADDRESS);
     }
 
 

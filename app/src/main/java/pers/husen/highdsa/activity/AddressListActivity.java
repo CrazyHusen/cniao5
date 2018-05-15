@@ -7,8 +7,8 @@ import android.view.View;
 import pers.husen.highdsa.CNiaoApplication;
 import pers.husen.highdsa.R;
 import pers.husen.highdsa.adapter.AddressListAdapter;
-import pers.husen.highdsa.contants.Contants;
-import pers.husen.highdsa.contants.HttpContants;
+import pers.husen.highdsa.constants.Constants;
+import pers.husen.highdsa.constants.HttpContants;
 import pers.husen.highdsa.utils.LogUtil;
 import pers.husen.highdsa.widget.CNiaoToolBar;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -84,7 +84,7 @@ public class AddressListActivity extends BaseActivity {
             public void onClick(View view) {
                 //跳转到添加地址界面
                 Intent intent = new Intent(AddressListActivity.this, AddressAddActivity.class);
-                startActivityForResult(intent, Contants.Addresslist2Addressadd);
+                startActivityForResult(intent, Constants.Addresslist2Addressadd);
             }
         });
     }

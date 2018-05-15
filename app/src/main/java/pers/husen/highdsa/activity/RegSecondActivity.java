@@ -10,17 +10,14 @@ import android.widget.TextView;
 import pers.husen.highdsa.CNiaoApplication;
 import pers.husen.highdsa.R;
 import pers.husen.highdsa.bean.User;
-import pers.husen.highdsa.contants.Contants;
-import pers.husen.highdsa.contants.HttpContants;
 import pers.husen.highdsa.msg.LoginRespMsg;
+import pers.husen.highdsa.msg.ResponseJson;
 import pers.husen.highdsa.utils.CountTimerView;
-import pers.husen.highdsa.utils.DESUtil;
 
 import okhttp3.Response;
 import pers.husen.highdsa.constants.HttpConstants;
 import pers.husen.highdsa.utils.LogUtil;
 import pers.husen.highdsa.utils.ToastUtils;
-import pers.husen.highdsa.utils.TripleDesEncrypt;
 import pers.husen.highdsa.widget.CNiaoToolBar;
 import pers.husen.highdsa.widget.ClearEditText;
 
@@ -47,18 +44,15 @@ import okhttp3.Call;
  * <p>
  * Created at 2018/05/13 21:05
  * <p>
- * Version 1.0.0
+ * Version 1.0.1
  */
 public class RegSecondActivity extends BaseActivity {
     @BindView(R.id.toolbar)
     CNiaoToolBar mToolBar;
-
     @BindView(R.id.txtTip)
     TextView mTxtTip;
-
     @BindView(R.id.btn_reSend)
     Button mBtnResend;
-
     @BindView(R.id.edittxt_code)
     ClearEditText mEtCode;
 
@@ -72,7 +66,6 @@ public class RegSecondActivity extends BaseActivity {
 
     @Override
     protected void init() {
-
         initToolBar();
         dialog = new SpotsDialog(this);
 
@@ -84,47 +77,14 @@ public class RegSecondActivity extends BaseActivity {
         String text = getString(R.string.smssdk_send_mobile_detail) + formatedPhone;
         mTxtTip.setText(Html.fromHtml(text));
 
-        CountTimerView timerView = new CountTimerView(mBtnResend);    //倒计时
+        //倒计时
+        CountTimerView timerView = new CountTimerView(mBtnResend);
         timerView.start();
-
-        initSms();
     }
 
     @Override
     protected int getContentResourseId() {
         return R.layout.activity_reg_second;
-    }
-
-    private void initSms() {
-        // 创建EventHandler对象
-        eventHandler = new EventHandler() {
-            public void afterEvent(int event, int result, Object data) {
-
-                if (result == SMSSDK.RESULT_COMPLETE) {
-                    //回调完成
-                    if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
-                        //提交验证码成功
-                        try {
-                            // 与后台交互
-                            doReg();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        //                        dialog.setMessage("正在提交注册信息");
-                        //                        dialog.show();
-                    }
-                } else if (data instanceof Throwable) {
-                    Throwable throwable = (Throwable) data;
-                    String msg = throwable.getMessage();
-                    ToastUtils.showSafeToast(RegSecondActivity.this, msg);
-                } else {
-                    ((Throwable) data).printStackTrace();
-                }
-            }
-        };
-
-        // 注册监听器
-        SMSSDK.registerEventHandler(eventHandler);
     }
 
     /**
@@ -135,6 +95,15 @@ public class RegSecondActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 submitCode();
+
+                ToastUtils.showDebugSafeToast(RegSecondActivity.this, "校验验证码成功,开始注册用户");
+
+                //发送注册信息
+                try {
+                    sendRegisterUserInfo();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -147,54 +116,13 @@ public class RegSecondActivity extends BaseActivity {
         String vCode = mEtCode.getText().toString().trim();
 
         if (TextUtils.isEmpty(vCode)) {
-            ToastUtils.showSafeToast(RegSecondActivity.this, "请填写验证码");
+            ToastUtils.showDebugSafeToast(RegSecondActivity.this, "请填写验证码");
 
             return;
         }
 
         //校验验证码
         validateCode(phone, vCode);
-        //SMSSDK.submitVerificationCode(countryCode, phone, vCode);
-    }
-
-
-    /**
-     * 注册.与后台交互
-     */
-    private void doReg() throws Exception {
-        String pwdEncode = TripleDesEncrypt.encrypt(pwd);
-
-        Map<String, String> params = new HashMap<>();
-        params.put("userPhone", phone);
-        //TODO - 用户名不能为空
-        params.put("userName", phone);
-        params.put("userPassword", pwdEncode);
-
-        OkHttpUtils.post().url(HttpConstants.URL_REGISTER_USER).params(params).build().execute(new StringCallback() {
-            @Override
-            public void onError(Call call, Exception e, int id) {
-                LogUtil.e("注册", "失败", true);
-            }
-
-            @Override
-            public void onResponse(String response, int id) {
-                LogUtil.e("注册", "成功", true);
-
-                if (dialog != null && dialog.isShowing()) {
-                    dialog.dismiss();
-                }
-
-                LoginRespMsg<User> loginRespMsg = mGson.fromJson(response, new
-                        TypeToken<LoginRespMsg<User>>() {
-                        }.getType());
-                CNiaoApplication application = CNiaoApplication.getInstance();
-                application.putUser(loginRespMsg.getData(), loginRespMsg.getToken());
-
-                startActivity(new Intent(RegSecondActivity.this, MainActivity.class));
-                finish();
-
-            }
-        });
     }
 
     /**
@@ -215,31 +143,67 @@ public class RegSecondActivity extends BaseActivity {
      */
     private void validateCode(String phone, String code) {
         Map<String, String> params = new HashMap<>();
-        params.put("phone", phone);
-        params.put("code", code);
+        params.put("phone_number", phone);
+        params.put("captcha", code);
 
-        // 修改登录的请求地址
         OkHttpUtils.post().url(HttpConstants.URL_VALIDATE_CODE).params(params).build().execute(new Callback<String>() {
             @Override
             public String parseNetworkResponse(Response response, int id) throws Exception {
                 String string = response.body().string();
 
-                //使用jackson
-                ObjectMapper objectMapper = new ObjectMapper();
-                Map<String, String> map = objectMapper.readValue(string, Map.class);
+                ResponseJson responseJson = new ObjectMapper().readValue(string, ResponseJson.class);
 
-                LogUtil.d("测试结果", map.toString());
+                if (responseJson.getSuccess()) {
+                    ToastUtils.showDebugSafeToast(RegSecondActivity.this, "验证码验证成功：" + responseJson.getMessage());
+                } else {
+                    ToastUtils.showDebugSafeToast(RegSecondActivity.this, "验证码验证失败：" + responseJson.getMessage());
+                }
 
-                return "";
+                return (String) responseJson.getMessage();
             }
 
             @Override
             public void onError(Call call, Exception e, int id) {
+                ToastUtils.showDebugSafeToast(RegSecondActivity.this, "校验验证码出错");
             }
 
             @Override
             public void onResponse(String response, int id) {
+            }
+        });
+    }
 
+    /**
+     * 注册.与后台交互
+     */
+    private void sendRegisterUserInfo() throws Exception {
+        dialog.setMessage("正在提交注册信息");
+        dialog.show();
+
+        Map<String, String> params = new HashMap<>();
+        params.put("user_phone", phone);
+        params.put("user_password", pwd);
+
+        OkHttpUtils.post().url(HttpConstants.URL_REGISTER_USER).params(params).build().execute(new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                LogUtil.e("注册", "失败", true);
+            }
+
+            @Override
+            public void onResponse(String response, int id) {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+
+                LoginRespMsg<User> loginRespMsg = mGson.fromJson(response, new
+                        TypeToken<LoginRespMsg<User>>() {
+                        }.getType());
+                CNiaoApplication application = CNiaoApplication.getInstance();
+                application.putUser(loginRespMsg.getData(), loginRespMsg.getToken());
+
+                startActivity(new Intent(RegSecondActivity.this, MainActivity.class));
+                finish();
             }
         });
     }

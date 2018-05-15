@@ -25,7 +25,7 @@ import pers.husen.highdsa.activity.GoodsDetailsActivity;
 import pers.husen.highdsa.activity.SearchActivity;
 import pers.husen.highdsa.adapter.HotGoodsAdapter;
 import pers.husen.highdsa.bean.HotGoods;
-import pers.husen.highdsa.contants.HttpContants;
+import pers.husen.highdsa.constants.HttpContants;
 import pers.husen.highdsa.utils.LogUtil;
 import pers.husen.highdsa.utils.ToastUtils;
 
@@ -33,13 +33,13 @@ import static com.zhy.http.okhttp.log.LoggerInterceptor.TAG;
 
 
 /**
- * <pre>
- *     author : 高磊华
- *     e-mail : 984992087@qq.com
- *     time   : 2017/08/02
- *     desc   : 热卖商品fragment
- *     version: 2.0
- * </pre>
+ * Description 热卖商品fragment
+ *
+ * Author 何明胜
+ *
+ * Created at 2018/05/16 01:46
+ *
+ * Version 1.0.0
  */
 public class HotFragment extends BaseFragment {
 
@@ -96,7 +96,7 @@ public class HotFragment extends BaseFragment {
                 if (currPage <= totalPage) {
                     loadMoreData();
                 } else {
-                    ToastUtils.showSafeToast(getContext(),"没有更多数据啦");
+                    ToastUtils.showDebugSafeToast(getContext(),"没有更多数据啦");
                     mRefreshLaout.finishRefreshLoadMore();
                 }
             }

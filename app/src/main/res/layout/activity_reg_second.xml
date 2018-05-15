@@ -8,7 +8,6 @@
               android:orientation="vertical"
     >
 
-
     <pers.husen.highdsa.widget.CNiaoToolBar
         android:id="@id/toolbar"
         android:layout_width="match_parent"
@@ -16,7 +15,7 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         app:isShowLeftIcon="true"
-        app:rightButtonText="完 成"
+        app:rightButtonText="完成"
         app:title="用户注册(2/2)"
         />
 
@@ -53,7 +52,7 @@
                 android:layout_weight="1"
                 android:hint="请输入验证码"
                 android:inputType="number"
-                android:maxLength="4"
+                android:maxLength="6"
                 />
 
             <Button

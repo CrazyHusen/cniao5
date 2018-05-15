@@ -10,7 +10,7 @@ import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Response;
-import pers.husen.highdsa.utils.LogUtil;
+import pers.husen.highdsa.utils.DESUtil;
 
 /**
  * Description 测试专用类
@@ -57,10 +57,13 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("OK");
-        try {
+       /* try {
             new Main().okHttpTest();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-        }
+        }*/
+
+        String result = DESUtil.encode("IwL1EOba", "highdsa");
+        System.out.println(result);
     }
 }

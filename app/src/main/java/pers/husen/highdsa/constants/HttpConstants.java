@@ -10,10 +10,9 @@ package pers.husen.highdsa.constants;
  * Version 1.0.0
  */
 public class HttpConstants {
-    /**
-     * 登录基础url
-     */
-    public static final String BASE_URL_LOGIN = "http://223.3.89.104:8080/highdsa-web-app/";
+    /** 登录基础url */
+    //public static final String BASE_URL_LOGIN = "http://223.3.89.104:8080/highdsa-restful-app/";
+    public static final String BASE_URL_LOGIN = "http://192.168.42.107:8081/highdsa-restful-app/";
 
     /** 登录 */
     public static final String URL_LOGIN = BASE_URL_LOGIN + "app/v1/login/phone";
@@ -23,7 +22,7 @@ public class HttpConstants {
     /** 发送验证码 */
     public static final String URL_SEND_CODE = BASE_URL_LOGIN + "sms/v1/captcha";
     /** 校验验证码 */
-    public static final String URL_VALIDATE_CODE = BASE_URL_LOGIN + "app/v1/validate";
+    public static final String URL_VALIDATE_CODE = BASE_URL_LOGIN + "sms/v1/validate";
 
     /** 校验验证码 */
     public static final String URL_REGISTER_USER = BASE_URL_LOGIN + "/register/v1/user";

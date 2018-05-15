@@ -5,6 +5,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import okhttp3.Call;
 import pers.husen.highdsa.CNiaoApplication;
 import pers.husen.highdsa.R;
 import pers.husen.highdsa.activity.AddressListActivity;
@@ -12,8 +16,10 @@ import pers.husen.highdsa.activity.LoginActivity;
 import pers.husen.highdsa.activity.MyFavoriteActivity;
 import pers.husen.highdsa.activity.MyOrdersActivity;
 import pers.husen.highdsa.bean.User;
-import pers.husen.highdsa.contants.Contants;
+import pers.husen.highdsa.constants.HttpConstants;
+import pers.husen.highdsa.constants.Constants;
 import pers.husen.highdsa.utils.GlideUtils;
+import pers.husen.highdsa.utils.LogUtil;
 import pers.husen.highdsa.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -21,23 +27,22 @@ import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
- * <pre>
- *     author : 高磊华
- *     e-mail : 984992087@qq.com
- *     time   : 2017/08/02
- *     desc   : 我的 fragment
- *     version: 1.0
- * </pre>
+ * Description "我的"栏目 fragment
+ * <p>
+ * Author 何明胜
+ * <p>
+ * Created at 2018/05/15 22:25
+ * <p>
+ * Version 1.0.2
  */
 public class MineFragment extends BaseFragment {
-
     @BindView(R.id.img_head)
     CircleImageView mImageHead;
     @BindView(R.id.txt_username)
-    TextView        mTxtUserName;
+    TextView mTxtUserName;
+    //退出按钮
     @BindView(R.id.btn_logout)
-    Button          mbtnLogout;
-
+    Button mbtnLogout;
 
     @Override
     protected void init() {
@@ -49,7 +54,6 @@ public class MineFragment extends BaseFragment {
     protected int getContentResourseId() {
         return R.layout.fragment_mine;
     }
-
 
     @OnClick({R.id.txt_my_address, R.id.txt_my_favorite, R.id.txt_my_orders, R.id.txt_username, R
             .id.img_head, R.id.btn_logout})
@@ -68,19 +72,19 @@ public class MineFragment extends BaseFragment {
             case R.id.img_head:
                 User user = CNiaoApplication.getInstance().getUser();
                 if (user == null) {
-                    Intent intent2 = new Intent(getActivity(), LoginActivity.class);
-                    startActivityForResult(intent2, Contants.REQUEST_CODE);
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivityForResult(intent, Constants.REQUEST_CODE);
                 } else {
-                    ToastUtils.showSafeToast(getContext(), "更换头像或修改昵称");
+                    ToastUtils.showDebugSafeToast(getContext(), "更换头像或修改昵称");
                 }
                 break;
             case R.id.btn_logout:
                 CNiaoApplication.getInstance().clearUser();
                 showUser(null);
+                remoteLogout();
                 break;
         }
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -96,5 +100,21 @@ public class MineFragment extends BaseFragment {
         } else {
             mTxtUserName.setText("请登陆");
         }
+    }
+
+    //退出时远程也退出,会话清除
+    private void remoteLogout() {
+        OkHttpUtils.post().url(HttpConstants.URL_LOGOUT).build().execute(new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                LogUtil.e("退出", "失败", true);
+                ToastUtils.showDebugSafeToast(MineFragment.super.getContext(), "退出失败");
+            }
+
+            @Override
+            public void onResponse(String response, int id) {
+                ToastUtils.showDebugSafeToast(MineFragment.super.getContext(), "退出成功");
+            }
+        });
     }
 }

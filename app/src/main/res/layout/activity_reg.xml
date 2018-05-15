@@ -80,7 +80,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:hint="请输入常用手机号码"
-                android:inputType="phone" />
+                android:inputType="phone"
+                android:text="18626422426" />
         </LinearLayout>
 
         <include layout="@layout/include_line_horizontal" />
@@ -110,7 +111,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:hint="请输入密码"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:text="123456" />
         </LinearLayout>
     </LinearLayout>
 

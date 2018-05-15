@@ -27,7 +27,7 @@ import pers.husen.highdsa.bean.Category;
 import pers.husen.highdsa.bean.HotGoods;
 import pers.husen.highdsa.bean.VFMessage;
 import pers.husen.highdsa.bean.Weather;
-import pers.husen.highdsa.contants.HttpContants;
+import pers.husen.highdsa.constants.HttpContants;
 import pers.husen.highdsa.service.LocationService;
 import pers.husen.highdsa.utils.LogUtil;
 import pers.husen.highdsa.utils.ScreenUtils;

@@ -10,20 +10,30 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import pers.husen.highdsa.CNiaoApplication;
+import pers.husen.highdsa.constants.DebugShowConstants;
 
 /**
- * Created by 高磊华
- * Time  2018/2/10
- * Describe: Toast的工具类
+ * Description Toast的工具类
+ * <p>
+ * Author 何明胜
+ * <p>
+ * Created at 2018/05/16 01:30
+ * <p>
+ * Version 1.0.0
  */
 public class ToastUtils {
-
     private static Toast mToast;
+
+    public static void showDebugSafeToast(final Context context, final String text) {
+        if(DebugShowConstants.isToastShow){
+            safeToastShow(context, text);
+        }
+    }
 
     /**
      * 安全弹出Toast。处理线程的问题。
      */
-    public static void showSafeToast(final Context context, final String text) {
+    public static void safeToastShow(final Context context, final String text) {
         //如果不是在主线程弹出吐司，那么抛到主线程弹
         if (Looper.myLooper() != Looper.getMainLooper()) {
             new Handler(Looper.getMainLooper()).post(
@@ -31,26 +41,32 @@ public class ToastUtils {
                         @Override
                         public void run() {
                             if (context == null) {
-                                showUiToast(CNiaoApplication.sContext, text);
+                                uiToastShow(CNiaoApplication.sContext, text);
                             } else {
-                                showUiToast(context, text);
+                                uiToastShow(context, text);
                             }
                         }
                     }
             );
         } else {
             if (context == null) {
-                showUiToast(CNiaoApplication.sContext, text);
+                uiToastShow(CNiaoApplication.sContext, text);
             } else {
-                showUiToast(context, text);
+                uiToastShow(context, text);
             }
+        }
+    }
+
+    public static void showDebugUiToast(final Context context, final String text) {
+        if(DebugShowConstants.isToastShow){
+            uiToastShow(context, text);
         }
     }
 
     /**
      * 弹出Toast，处理单例的问题。----如果是在主线程,可以用这个,子线程就不要用这个,不安全
      */
-    public static void showUiToast(Context context, String text) {
+    public static void uiToastShow(Context context, String text) {
         if (context == null) {
             context = CNiaoApplication.sContext;
         }

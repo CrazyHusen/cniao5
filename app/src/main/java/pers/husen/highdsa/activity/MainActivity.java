@@ -29,11 +29,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by 高磊华
- * Time  2017/8/2
- * Describe:整个app的主入门
+ * Description app主入口
+ *
+ * Author 何明胜
+ *
+ * Created at 2018/05/16 01:45
+ *
+ * Version 1.0.0
  */
-
 public class MainActivity extends BaseActivity {
     private FragmentTabHost mTabhost;
     private LayoutInflater  mInflater;
@@ -145,7 +148,7 @@ public class MainActivity extends BaseActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
             if (System.currentTimeMillis() - exitTime > 2000) {
-                ToastUtils.showSafeToast(MainActivity.this, "再点一次退出轻松购");
+                ToastUtils.showDebugSafeToast(MainActivity.this, "再点一次退出轻松购");
                 exitTime = System.currentTimeMillis();
             } else {
                 finish();

@@ -17,8 +17,8 @@ import pers.husen.highdsa.adapter.HomeCatgoryAdapter;
 import pers.husen.highdsa.bean.BannerBean;
 import pers.husen.highdsa.bean.Campaign;
 import pers.husen.highdsa.bean.HomeCampaignBean;
-import pers.husen.highdsa.contants.Contants;
-import pers.husen.highdsa.contants.HttpContants;
+import pers.husen.highdsa.constants.Constants;
+import pers.husen.highdsa.constants.HttpContants;
 import pers.husen.highdsa.widget.CNiaoToolBar;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -121,7 +121,7 @@ public class HomeFragment extends BaseFragment2 implements View.OnClickListener 
             public void onClick(View view, Campaign campaign) {
 
                 Intent intent = new Intent(getContext(), GoodsListActivity.class);
-                intent.putExtra(Contants.COMPAINGAIN_ID, campaign.getId());
+                intent.putExtra(Constants.COMPAINGAIN_ID, campaign.getId());
                 startActivity(intent);
             }
         });

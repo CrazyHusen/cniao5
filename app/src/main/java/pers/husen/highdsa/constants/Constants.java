@@ -1,12 +1,11 @@
-package pers.husen.highdsa.contants;
+package pers.husen.highdsa.constants;
 
 /**
  * Created by 高磊华
  * Time  2017/8/11
  * Describe:一般的常量
  */
-
-public class Contants {
+public class Constants {
 
     public static final int Addresslist2Addressadd = 1;       //从地址列表到添加地址的常量
 

@@ -1,4 +1,4 @@
-package pers.husen.highdsa.contants;
+package pers.husen.highdsa.constants;
 
 /**
  * <pre>
@@ -9,8 +9,6 @@ package pers.husen.highdsa.contants;
  *     version: 1.0
  * </pre>
  */
-
-
 public interface HttpContants {
 
     public static final String BASE_URL = "http://112.124.22.238:8081/course_api/";       //url的基类
@@ -49,6 +47,4 @@ public interface HttpContants {
 
     public static final String FAVORITE_LIST   = BASE_URL + "favorite/list";
     public static final String FAVORITE_CREATE = BASE_URL + "favorite/create";
-
-
 }

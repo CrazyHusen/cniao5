@@ -19,19 +19,20 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * Created by:高磊华
- * Email: 984992087@qq.com
- * Time:  2017/8/22
- * Describe: 引导页.
- * 第一次安装或者卸载后重装时,才出现这个界面
+ * Description 引导页,第一次安装或者卸载后重装时,才出现这个界面
+ * <p>
+ * Author 何明胜
+ * <p>
+ * Created at 2018/05/16 01:44
+ * <p>
+ * Version 1.0.0
  */
-
 public class GuideActivity extends BaseActivity {
 
     @BindView(R.id.viewpager)
     ViewPager mViewPager;
     @BindView(R.id.btn_start)
-    Button    mBtnStart;
+    Button mBtnStart;
 
     //获取图片资源
     int[] imgRes = new int[]{R.drawable.guide_1, R.drawable.guide_2, R.drawable.guide_3, R

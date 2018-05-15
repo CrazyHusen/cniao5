@@ -11,7 +11,7 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import pers.husen.highdsa.CNiaoApplication;
 import pers.husen.highdsa.R;
 import pers.husen.highdsa.bean.PickerCityAddressBean;
-import pers.husen.highdsa.contants.HttpContants;
+import pers.husen.highdsa.constants.HttpContants;
 import pers.husen.highdsa.utils.GetJsonDataUtil;
 import pers.husen.highdsa.utils.LogUtil;
 import pers.husen.highdsa.utils.ToastUtils;
@@ -33,11 +33,14 @@ import static pers.husen.highdsa.R.id.txt_address;
 
 
 /**
- * Created by 高磊华
- * Time  2017/8/11
- * Describe: 添加收货地址
+ * Description 添加收货地址
+ *
+ * Author 何明胜
+ *
+ * Created at 2018/05/16 01:40
+ *
+ * Version 1.0.0
  */
-
 public class AddressAddActivity extends BaseActivity {
 
 
@@ -81,7 +84,7 @@ public class AddressAddActivity extends BaseActivity {
                     isLoaded = true;
                     break;
                 case MSG_LOAD_FAILED:
-                    ToastUtils.showSafeToast(AddressAddActivity.this,"数据获取失败,请重试");
+                    ToastUtils.showDebugSafeToast(AddressAddActivity.this,"数据获取失败,请重试");
                     break;
 
             }
@@ -115,7 +118,7 @@ public class AddressAddActivity extends BaseActivity {
                 if (isLoaded) {
                     ShowPickerView();
                 } else {
-                    ToastUtils.showSafeToast(AddressAddActivity.this,"请稍等,数据获取中");
+                    ToastUtils.showDebugSafeToast(AddressAddActivity.this,"请稍等,数据获取中");
                 }
                 break;
         }
@@ -135,17 +138,17 @@ public class AddressAddActivity extends BaseActivity {
 
         //进行非空判断
         if (TextUtils.isEmpty(consignee)) {
-            ToastUtils.showSafeToast(AddressAddActivity.this,"收件人为空,请检查");
+            ToastUtils.showDebugSafeToast(AddressAddActivity.this,"收件人为空,请检查");
             return;
         }
 
         if (TextUtils.isEmpty(phone)) {
-            ToastUtils.showSafeToast(AddressAddActivity.this,"联系电话为空,请检查");
+            ToastUtils.showDebugSafeToast(AddressAddActivity.this,"联系电话为空,请检查");
             return;
         }
 
         if (TextUtils.isEmpty(smallAddress) || TextUtils.isEmpty(bigAddress)) {
-            ToastUtils.showSafeToast(AddressAddActivity.this,"地址不完整,请检查");
+            ToastUtils.showDebugSafeToast(AddressAddActivity.this,"地址不完整,请检查");
             return;
         }
 
@@ -161,14 +164,14 @@ public class AddressAddActivity extends BaseActivity {
             public void onError(Call call, Exception e, int id) {
                 LogUtil.e("添加新地址", "失败" + e, true);             //   java.io.IOException: request
 
-                ToastUtils.showSafeToast(AddressAddActivity.this,"地址添加失败,请重试");
+                ToastUtils.showDebugSafeToast(AddressAddActivity.this,"地址添加失败,请重试");
             }
 
             @Override
             public void onResponse(String response, int id) {
                 LogUtil.e("添加新地址", "成功" + response, true);
 
-                ToastUtils.showSafeToast(AddressAddActivity.this,"地址添加成功");
+                ToastUtils.showDebugSafeToast(AddressAddActivity.this,"地址添加成功");
             }
         });
 

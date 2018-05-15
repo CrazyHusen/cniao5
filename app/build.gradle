@@ -82,7 +82,6 @@ dependencies {
     compile name: 'SMSSDK-3.0.0', ext: 'aar'
     //短信验证
     compile name: 'SMSSDKGUI-3.0.0', ext: 'aar'
-    //短信验证
     //批量处理权限的库
     compile 'com.mylhyl:acp:1.1.7'
     //自定义样式的dialog
@@ -109,7 +108,5 @@ dependencies {
     compile files('libs/BaiduLBS_Android.jar')
     compile files('libs/tbs_sdk_thirdapp_v3.2.0.1104_43200_sharewithdownload_withfilereader_withoutGame_obfs_20170609_115346.jar')
     //添加的
-    compile 'com.squareup.okhttp3:okhttp:3.9.0'
-    compile 'com.squareup.okio:okio:1.13.0'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.9.4'
 }

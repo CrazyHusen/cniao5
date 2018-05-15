@@ -19,11 +19,14 @@ import pers.husen.highdsa.utils.ToastUtils;
 import java.util.List;
 
 /**
- * Created by 高磊华
- * Time  2017/8/8
- * Describe: 热卖商品的适配器
+ * Description 热卖商品适配器
+ *
+ * Author 何明胜
+ *
+ * Created at 2018/05/16 01:44
+ *
+ * Version 1.0.0
  */
-
 public class HotGoodsAdapter extends RecyclerView.Adapter<HotGoodsAdapter.ViewHolder> implements
         View.OnClickListener {
 
@@ -61,7 +64,7 @@ public class HotGoodsAdapter extends RecyclerView.Adapter<HotGoodsAdapter.ViewHo
                 public void onClick(View v) {
 //                    ShoppingCart cart = convertData(data);
                     provider.put(data);
-                    ToastUtils.showSafeToast(mContext,"已添加到购物车");
+                    ToastUtils.showDebugSafeToast(mContext,"已添加到购物车");
                 }
             });
         }

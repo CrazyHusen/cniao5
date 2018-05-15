@@ -10,7 +10,7 @@ import pers.husen.highdsa.CNiaoApplication;
 import pers.husen.highdsa.R;
 import pers.husen.highdsa.bean.HotGoods;
 import pers.husen.highdsa.bean.User;
-import pers.husen.highdsa.contants.HttpContants;
+import pers.husen.highdsa.constants.HttpContants;
 import pers.husen.highdsa.helper.SharePresenter;
 import pers.husen.highdsa.utils.CartShopProvider;
 import pers.husen.highdsa.utils.LogUtil;
@@ -26,11 +26,14 @@ import butterknife.BindView;
 import okhttp3.Call;
 
 /**
- * Created by 高磊华
- * Time  2017/8/9
- * Describe: 商品详情
+ * Description 商品详情
+ *
+ * Author 何明胜
+ *
+ * Created at 2018/05/16 01:41
+ *
+ * Version 1.0.0
  */
-
 public class GoodsDetailsActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.toolbar)
@@ -146,9 +149,8 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
         @JavascriptInterface
         public void buy(long id) {
             cartProvider.put(goodsBean);
-            ToastUtils.showSafeToast(GoodsDetailsActivity.this, "已添加到购物车");
+            ToastUtils.showDebugSafeToast(GoodsDetailsActivity.this, "已添加到购物车");
         }
-
 
         /**
          * 这里和视频 源代码有出入.
@@ -185,7 +187,7 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
 
             @Override
             public void onResponse(String response, int id) {
-                ToastUtils.showSafeToast(GoodsDetailsActivity.this,"已添加到收藏夹");
+                ToastUtils.showDebugSafeToast(GoodsDetailsActivity.this,"已添加到收藏夹");
             }
         });
 

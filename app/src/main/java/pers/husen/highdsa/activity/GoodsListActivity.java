@@ -14,8 +14,8 @@ import com.cjj.MaterialRefreshLayout;
 import pers.husen.highdsa.R;
 import pers.husen.highdsa.adapter.HotGoodsAdapter;
 import pers.husen.highdsa.bean.HotGoods;
-import pers.husen.highdsa.contants.Contants;
-import pers.husen.highdsa.contants.HttpContants;
+import pers.husen.highdsa.constants.Constants;
+import pers.husen.highdsa.constants.HttpContants;
 import pers.husen.highdsa.utils.LogUtil;
 import pers.husen.highdsa.utils.ToastUtils;
 import pers.husen.highdsa.widget.CNiaoToolBar;
@@ -29,15 +29,14 @@ import butterknife.BindView;
 import okhttp3.Call;
 
 /**
- * <pre>
- *     author : 高磊华
- *     e-mail : 984992087@qq.com
- *     time   : 2017/08/17
- *     desc   :商品列表
- *     version: 1.0
- * </pre>
+ * Description 商品列表
+ *
+ * Author 何明胜
+ *
+ * Created at 2018/05/16 01:43
+ *
+ * Version 1.0.0
  */
-
 public class GoodsListActivity extends BaseActivity implements View.OnClickListener, TabLayout
         .OnTabSelectedListener {
 
@@ -75,11 +74,10 @@ public class GoodsListActivity extends BaseActivity implements View.OnClickListe
     protected void init() {
 
         initToolBar();
-        campaignId = getIntent().getLongExtra(Contants.COMPAINGAIN_ID, 0);
+        campaignId = getIntent().getLongExtra(Constants.COMPAINGAIN_ID, 0);
         initTab();
         getData();
     }
-
 
     private void initToolBar() {
 
@@ -95,9 +93,7 @@ public class GoodsListActivity extends BaseActivity implements View.OnClickListe
         mToolbar.setRightButtonOnClickListener(this);
     }
 
-
     private void initTab() {
-
         mTablayout.setOnTabSelectedListener(this);     //这一句必须放在添加tab的前面,要不然第一次进入时,没有默认的
         //    http://www.jianshu.com/p/493d40a9d38e
 
@@ -121,7 +117,6 @@ public class GoodsListActivity extends BaseActivity implements View.OnClickListe
     private void getData() {
 
     }
-
 
     @Override
     protected int getContentResourseId() {
@@ -175,7 +170,6 @@ public class GoodsListActivity extends BaseActivity implements View.OnClickListe
         });
     }
 
-
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
     }
@@ -183,7 +177,6 @@ public class GoodsListActivity extends BaseActivity implements View.OnClickListe
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
     }
-
 
     /**
      * 展示数据
@@ -194,7 +187,7 @@ public class GoodsListActivity extends BaseActivity implements View.OnClickListe
             mTxtSummary.setText("共有" + datas.size() + "件商品");
         } else {
             mLlSummary.setVisibility(View.GONE);
-            ToastUtils.showUiToast(GoodsListActivity.this,"暂无商品信息");
+            ToastUtils.showDebugUiToast(GoodsListActivity.this,"暂无商品信息");
             return;
         }
 
@@ -209,8 +202,5 @@ public class GoodsListActivity extends BaseActivity implements View.OnClickListe
         mRecyclerview.setItemAnimator(new DefaultItemAnimator());
         mRecyclerview.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration
                 .HORIZONTAL));
-
     }
-
-
 }
