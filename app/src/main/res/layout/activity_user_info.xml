@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <pers.husen.highdsa.widget.CNiaoToolBar
+        android:id="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:isShowLeftIcon="true"
+        app:title="个人信息" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/selector_view_block"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/screenPadding"
+        android:paddingRight="@dimen/screenPadding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/middlePadding"
+            android:paddingTop="@dimen/middlePadding">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="center"
+                android:text="头像"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <View style="@style/line_horizontal" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/Image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="#FFFFFF"
+                    android:src="@drawable/default_head">
+                </de.hdodenhof.circleimageview.CircleImageView>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <include layout="@layout/include_line_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/middlePadding"
+            android:paddingTop="@dimen/middlePadding">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="用户名"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <View style="@style/line_horizontal" />
+
+            <TextView
+                android:id="@+id/TextUsername"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="用户名"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <include layout="@layout/include_line_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/middlePadding"
+            android:paddingTop="@dimen/middlePadding">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="性别"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <View style="@style/line_horizontal" />
+
+            <TextView
+                android:id="@+id/TextSex"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="性别"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <include layout="@layout/include_line_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/middlePadding"
+            android:paddingTop="@dimen/middlePadding">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="地址"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <View style="@style/line_horizontal" />
+
+            <TextView
+                android:id="@+id/TextAddress"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="地址"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <include layout="@layout/include_line_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/middlePadding"
+            android:paddingTop="@dimen/middlePadding">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="年龄"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <View style="@style/line_horizontal" />
+
+            <TextView
+                android:id="@+id/TextAge"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="年龄"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <include layout="@layout/include_line_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/middlePadding"
+            android:paddingTop="@dimen/middlePadding">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="生日"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <View style="@style/line_horizontal" />
+
+            <TextView
+                android:id="@+id/TextBirthday"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="生日"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
