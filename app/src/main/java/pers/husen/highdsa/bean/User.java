@@ -1,22 +1,26 @@
 
 package pers.husen.highdsa.bean;
 
+import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+
 import java.io.Serializable;
 
 /**
- * Created by 高磊华
- * Time  2017/8/8
- * Describe:  用户信息
+ * Description 用户信息
+ * <p>
+ * Author 何明胜
+ * <p>
+ * Created at 2018/05/22 01:03
+ * <p>
+ * Version 1.0.0
  */
-
 public class User implements Serializable {
-
-
-    private Long   id;
+    private Long id;
     private String email;
     private String logo_url;
     private String username;
     private String mobi;
+    private String phone_number;
 
     @Override
     public String toString() {
@@ -61,5 +65,13 @@ public class User implements Serializable {
 
     public void setMobi(String mobi) {
         this.mobi = mobi;
+    }
+
+    public String getPhoneNumber() {
+        return phone_number;
+    }
+
+    public void setPhoneNumber(String phone_number) {
+        this.phone_number = phone_number;
     }
 }

@@ -60,7 +60,6 @@ public class RegSecondActivity extends BaseActivity {
     private String pwd;
     private String countryCode;
 
-    private EventHandler eventHandler;
     private SpotsDialog dialog;
     private Gson mGson = new Gson();
 
@@ -146,6 +145,7 @@ public class RegSecondActivity extends BaseActivity {
         params.put("phone_number", phone);
         params.put("captcha", code);
 
+        ToastUtils.safeToastShow(RegSecondActivity.this, "发送验证码");
         OkHttpUtils.post().url(HttpConstants.URL_VALIDATE_CODE).params(params).build().execute(new Callback<String>() {
             @Override
             public String parseNetworkResponse(Response response, int id) throws Exception {
@@ -155,8 +155,10 @@ public class RegSecondActivity extends BaseActivity {
 
                 if (responseJson.getSuccess()) {
                     ToastUtils.showDebugSafeToast(RegSecondActivity.this, "验证码验证成功：" + responseJson.getMessage());
+                    ToastUtils.safeToastShow(RegSecondActivity.this, "验证码：" + responseJson.getMessage());
                 } else {
                     ToastUtils.showDebugSafeToast(RegSecondActivity.this, "验证码验证失败：" + responseJson.getMessage());
+                    ToastUtils.safeToastShow(RegSecondActivity.this, "验证码发送失败：" + responseJson.getMessage());
                 }
 
                 return (String) responseJson.getMessage();
@@ -164,7 +166,7 @@ public class RegSecondActivity extends BaseActivity {
 
             @Override
             public void onError(Call call, Exception e, int id) {
-                ToastUtils.showDebugSafeToast(RegSecondActivity.this, "校验验证码出错");
+                ToastUtils.safeToastShow(RegSecondActivity.this, "校验验证码出错");
             }
 
             @Override
@@ -211,6 +213,5 @@ public class RegSecondActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        SMSSDK.unregisterEventHandler(eventHandler);
     }
 }

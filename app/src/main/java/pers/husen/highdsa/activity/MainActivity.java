@@ -90,7 +90,6 @@ public class MainActivity extends BaseActivity {
         mTabhost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
-                LogUtil.e("生命周期", "1111111111", true);
                 if (getString(R.string.cart).equals(tabId)) {
                     refData();
                 }

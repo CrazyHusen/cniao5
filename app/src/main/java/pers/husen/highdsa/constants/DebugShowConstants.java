@@ -12,7 +12,7 @@ package pers.husen.highdsa.constants;
 
 public class DebugShowConstants {
     /** Toast 是否显示 */
-    public static final boolean isToastShow = false;
+    public static final boolean isToastShow = true;
 
     /** logcat的日志是否显示 */
     public static final boolean isLogShow = true;

@@ -29,7 +29,6 @@ public class UserLocalData {
 
 
     public static User getUser(Context context) {
-
         String user_json = PreferencesUtils.getString(context, Constants.USER_JSON);
         if (!TextUtils.isEmpty(user_json)) {
             return mGson.fromJson(user_json, User.class);

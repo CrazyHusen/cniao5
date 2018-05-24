@@ -147,8 +147,10 @@ public class RegActivity extends BaseActivity {
 
                 if (responseJson.getSuccess()) {
                     ToastUtils.showDebugSafeToast(RegActivity.this, "验证码发送成功：" + responseJson.getMessage());
+                    ToastUtils.safeToastShow(RegActivity.this,"验证码："+responseJson.getMessage());
                 } else {
                     ToastUtils.showDebugSafeToast(RegActivity.this, "验证码发送失败：" + responseJson.getMessage());
+                    ToastUtils.safeToastShow(RegActivity.this,"验证码："+responseJson.getMessage());
                 }
 
                 return (String) responseJson.getMessage();

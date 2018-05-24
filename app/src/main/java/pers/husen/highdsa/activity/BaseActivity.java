@@ -26,7 +26,6 @@ import butterknife.ButterKnife;
  * Version 1.0.0
  */
 public abstract class BaseActivity extends AppCompatActivity {
-
     protected static final String TAG = BaseActivity.class.getSimpleName();
 
     @Override

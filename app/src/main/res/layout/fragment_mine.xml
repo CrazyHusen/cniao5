@@ -92,6 +92,7 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
+                android:visibility="invisible"
                 />
         </LinearLayout>
     </ScrollView>

@@ -1,6 +1,7 @@
 package pers.husen.highdsa.fragment;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import pers.husen.highdsa.activity.AddressListActivity;
 import pers.husen.highdsa.activity.LoginActivity;
 import pers.husen.highdsa.activity.MyFavoriteActivity;
 import pers.husen.highdsa.activity.MyOrdersActivity;
+import pers.husen.highdsa.activity.UserInfoActivity;
 import pers.husen.highdsa.bean.User;
 import pers.husen.highdsa.constants.HttpConstants;
 import pers.husen.highdsa.constants.Constants;
@@ -75,7 +77,9 @@ public class MineFragment extends BaseFragment {
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
                     startActivityForResult(intent, Constants.REQUEST_CODE);
                 } else {
-                    ToastUtils.showDebugSafeToast(getContext(), "更换头像或修改昵称");
+                    //ToastUtils.showDebugSafeToast(getContext(), "更换头像或修改昵称");
+                    Intent intent = new Intent(getActivity(), UserInfoActivity.class);
+                    startActivity(intent);
                 }
                 break;
             case R.id.btn_logout:
@@ -97,8 +101,11 @@ public class MineFragment extends BaseFragment {
         if (user != null) {
             mTxtUserName.setText(user.getUsername());
             GlideUtils.load(getContext(), user.getLogo_url(), mImageHead);
+            mbtnLogout.setVisibility(View.VISIBLE);
         } else {
             mTxtUserName.setText("请登陆");
+            mImageHead.setImageResource(R.drawable.default_head);
+            mbtnLogout.setVisibility(View.INVISIBLE);
         }
     }
 
